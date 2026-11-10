@@ -1,0 +1,22 @@
+【备份说明】
+备份对象：时钟端工程 firmware\clock（改「涂鸦 DP103 备忘录下发」之前的快照）
+备份时间：2026-10-22 22:45
+备份原因：下一步要重新生成 Tuya MCU SDK 并改 protocol.c，风险高，先留一个可回退的完整副本。
+
+【这份备份能直接编译】
+  打开：USER\Template.uvprojx
+  编译基线：0 Error / 2 Warning，Code=20356  RO=536  RW=316  ZI=4308
+  （Keil: D:\keil5\UV4\UV4.exe -b "Template.uvprojx" -j0 -o build.log）
+
+【里面已经包含的功能】
+  · 5 寸串口屏 UI（CLOCK\UI\screen_ui.c）
+  · 两端 AA55 链路（CLOCK\LINK\clock_link.c + common\link_proto）
+  · 温湿度上屏（Screen_SetEnv 已接到 control.c）
+  · 旧 LCD/辉光管初始化与刷新已关掉（PB10/PB11 已让给蓝牙 USART3）
+
+【怎么还原】
+  把 firmware\clock 改名成 clock_废，再把本目录复制成 clock 即可。
+  注意：复制回去后要删掉 OBJ\ 里的旧目标文件再编译一次。
+
+【注意】
+  本目录只读备份用，不要在它上面继续开发，否则失去回退意义。
